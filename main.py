@@ -1,9 +1,12 @@
 import pygame
 import setting
+from homepage import HomePage
 
 pygame.init()
-screen = pygame.display.set_mode((setting.SCREEN_WIDTH, setting.SCREEN_HEIGHT))
-pygame.display.set_caption("Defender Crest")
+screen = pygame.display.set_mode((setting.SCREEN_WIDTH + setting.BANNER_SIZE, setting.SCREEN_HEIGHT))
+pygame.display.set_caption(setting.GAMETITLE)
+
+homepage = HomePage()
 
 running = True
 while running:
@@ -12,6 +15,7 @@ while running:
             running = False
     
     screen.fill(setting.WHITE)
+    homepage.draw(screen)
     pygame.display.flip()
 
 pygame.quit()

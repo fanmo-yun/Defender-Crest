@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
-        "pygame"
+        "blit",
+        "collidepoint",
+        "GAMETITLE",
+        "homepageimg",
+        "pygame",
+        "topleft"
     ]
 }
