@@ -1,0 +1,96 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "upgradecamp.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "E:/python/DefenderCrest/maps/tileset/FieldsTileset.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/Tree1.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/Tree2.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/brush.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/camp.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/campfire.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/enemiesandplayers.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/fence.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/flag1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/pointer.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/shadow.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/shilaimu.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/stone.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/tower1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/tower2.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/tower3.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/tower4.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/tower5.tsx": {
+            "scaleInDock": 1
+        },
+        "E:/python/DefenderCrest/maps/tileset/tower6.tsx": {
+            "scaleInDock": 1
+        },
+        "upgradecamp.tmx": {
+            "scale": 1,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 531,
+                "y": 311
+            }
+        }
+    },
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
+    "openFiles": [
+        "upgradecamp.tmx"
+    ],
+    "project": "upgradecamp.tiled-project",
+    "recentFiles": [
+        "upgradecamp.tmx"
+    ]
+}
