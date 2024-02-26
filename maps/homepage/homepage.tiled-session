@@ -102,34 +102,42 @@
             "scaleInEditor": 1
         },
         "homepage.tmx": {
-            "scale": 1.269140625,
+            "scale": 1,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 632,
+                "y": 295
+            }
+        },
+        "homepage2.tmx": {
+            "scale": 1,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 211.16651277316097,
-                "y": 200.92336103416434
+                "x": 768,
+                "y": 335
             }
         }
     },
     "last.imagePath": "E:/python/DefenderCrest/assets/enemies/1",
     "map.lastUsedFormat": "tmx",
     "map.renderOrder": null,
-    "map.width": 32,
+    "map.width": 37,
     "openFiles": [
     ],
     "project": "homepage.tiled-project",
     "recentFiles": [
+        "homepage.tmx",
+        "homepage2.tmx",
         "E:/python/DefenderCrest/maps/tileset/shilaimu.tsx",
         "E:/python/DefenderCrest/maps/tileset/enemiesandplayers.tsx",
         "E:/python/DefenderCrest/maps/tileset/camp.tsx",
         "E:/python/DefenderCrest/maps/tileset/brush.tsx",
         "E:/python/DefenderCrest/maps/tileset/Tree2.tsx",
-        "homepage.tmx",
         "E:/python/DefenderCrest/maps/tileset/Tree1.tsx",
         "E:/python/DefenderCrest/maps/tileset/tower6.tsx",
         "E:/python/DefenderCrest/maps/tileset/tower5.tsx",
         "E:/python/DefenderCrest/maps/tileset/tower4.tsx",
-        "E:/python/DefenderCrest/maps/tileset/tower3.tsx",
-        "E:/python/DefenderCrest/maps/tileset/tower2.tsx"
+        "E:/python/DefenderCrest/maps/tileset/tower3.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

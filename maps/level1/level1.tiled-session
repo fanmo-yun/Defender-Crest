@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "level1.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "全部文件 (*)",
@@ -13,12 +13,15 @@
             "scaleInDock": 1
         },
         "E:/python/DefenderCrest/maps/tileset/Tree1.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "E:/python/DefenderCrest/maps/tileset/Tree2.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "E:/python/DefenderCrest/maps/tileset/brush.tsx": {
+            "dynamicWrapping": true,
             "scaleInDock": 1
         },
         "E:/python/DefenderCrest/maps/tileset/camp.tsx": {
@@ -29,16 +32,8 @@
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
-        "E:/python/DefenderCrest/maps/tileset/enemiesandplayers.tsx": {
-            "dynamicWrapping": true,
-            "scaleInDock": 1
-        },
         "E:/python/DefenderCrest/maps/tileset/fence.tsx": {
             "dynamicWrapping": true,
-            "scaleInDock": 1
-        },
-        "E:/python/DefenderCrest/maps/tileset/flag1.tsx": {
-            "dynamicWrapping": false,
             "scaleInDock": 1
         },
         "E:/python/DefenderCrest/maps/tileset/pointer.tsx": {
@@ -46,10 +41,6 @@
             "scaleInDock": 1
         },
         "E:/python/DefenderCrest/maps/tileset/shadow.tsx": {
-            "dynamicWrapping": true,
-            "scaleInDock": 1
-        },
-        "E:/python/DefenderCrest/maps/tileset/shilaimu.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1
         },
@@ -57,40 +48,34 @@
             "dynamicWrapping": true,
             "scaleInDock": 1
         },
-        "E:/python/DefenderCrest/maps/tileset/tower1.tsx": {
-            "dynamicWrapping": false,
+        "E:/python/pythonProject/levels/TD tileset.tsx": {
             "scaleInDock": 1
         },
-        "E:/python/DefenderCrest/maps/tileset/tower2.tsx": {
-            "scaleInDock": 1
-        },
-        "E:/python/DefenderCrest/maps/tileset/tower3.tsx": {
-            "scaleInDock": 1
-        },
-        "E:/python/DefenderCrest/maps/tileset/tower4.tsx": {
-            "scaleInDock": 1
-        },
-        "E:/python/DefenderCrest/maps/tileset/tower5.tsx": {
-            "scaleInDock": 1
-        },
-        "E:/python/DefenderCrest/maps/tileset/tower6.tsx": {
-            "scaleInDock": 1
-        },
-        "upgradecamp.tmx": {
-            "scale": 1,
-            "selectedLayer": 2,
+        "E:/python/pythonProject/levels/level - 副本.tmx": {
+            "scale": 1.1795833333333332,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 530,
-                "y": 310
+                "x": 359.44895796538333,
+                "y": 359.4489579653833
+            }
+        },
+        "level1.tmx": {
+            "scale": 1,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 458,
+                "y": 360
             }
         }
     },
     "map.lastUsedFormat": "tmx",
     "map.renderOrder": null,
     "openFiles": [
+        "level1.tmx"
     ],
-    "project": "upgradecamp.tiled-project",
+    "project": "level1.tiled-project",
     "recentFiles": [
-        "upgradecamp.tmx"
+        "level1.tmx",
+        "E:/python/pythonProject/levels/level - 副本.tmx"
     ]
 }

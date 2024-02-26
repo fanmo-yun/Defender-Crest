@@ -1,6 +1,7 @@
 import pygame
 import setting
 from homepage import HomePage
+from button import GameButton
 
 pygame.init()
 screen = pygame.display.set_mode((setting.SCREEN_WIDTH + setting.BANNER_SIZE, setting.SCREEN_HEIGHT))
@@ -14,7 +15,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
     
-    screen.fill(setting.WHITE)
+    screen.fill(setting.KLEINBLUE)
     homepage.draw(screen)
     pygame.display.flip()
 
