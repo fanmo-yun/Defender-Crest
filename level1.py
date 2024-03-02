@@ -18,6 +18,7 @@ class Level_1:
         self.sell_turret_button = GameButton((211, 211, 211), setting.WHITE, "Sell", (130, 35), (setting.SCREEN_WIDTH + 10, 150))
         self.camp_button = GameButton((255, 204, 0), setting.WHITE, "Go to Camp", (130, 35), (setting.SCREEN_WIDTH + 10, setting.SCREEN_HEIGHT - 60))
         self.turrets_group = pygame.sprite.Group()
+        self.enemys_group = pygame.sprite.Group()
         self.load_turret()
         self.load_data()
     
@@ -90,7 +91,8 @@ class Level_1:
             if self.cancel_turret_button.draw(screen):
                 self.reject_all()
                 self.selected = False
-            self.upgrade_turret_button.draw(screen)
+            if self.upgrade_turret_button.draw(screen):
+                self.choose_turret.update_rank()
             if self.sell_turret_button.draw(screen):
                 self.choose_turret.kill()
                 self.selected = False
