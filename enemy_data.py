@@ -15,3 +15,24 @@ RANK = [
         "speed": 4
     }
 ]
+
+GENERATE = {
+    {
+        "Slime": 20,
+        "goblin": 20,
+        "wolf": 20,
+        "Bee": 20
+    },
+    {
+        "Slime": 40,
+        "goblin": 40,
+        "wolf": 40,
+        "Bee": 40
+    },
+    {
+        "Slime": 60,
+        "goblin": 60,
+        "wolf": 60,
+        "Bee": 60
+    }
+}
