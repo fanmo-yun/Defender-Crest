@@ -1,6 +1,7 @@
 import os
 import pygame
 import setting
+from turret_rank import RANK
 
 class Turret(pygame.sprite.Sprite):
     def load_images(self) -> None:
@@ -45,6 +46,7 @@ class Turret(pygame.sprite.Sprite):
         self.load_images()
         self.animation_index = 0
         self.animation_speed = 0.07
+        self.selected = False
         self.tile_x = pos[0]
         self.tile_y = pos[1]
         self.x = (pos[0] + 0.5) * setting.TILE_SIZE
@@ -57,10 +59,10 @@ class Turret(pygame.sprite.Sprite):
         self.range_image = pygame.Surface((180, 180))
         self.range_image.fill((0, 0, 0))
         self.range_image.set_colorkey((0, 0, 0))
-        pygame.draw.circle(self.range_image, "red", (90, 90), 90)
+        pygame.draw.circle(self.range_image, (255, 255, 255), (90, 90), 90)
         self.range_image.set_alpha(100)
         self.range_rect = self.range_image.get_rect()
-        self.range_rect.topleft = self.rect.topleft
+        self.range_rect.center = self.rect.center
     
     def play_animation(self) -> None:
         self.animation_index += self.animation_speed
@@ -73,4 +75,5 @@ class Turret(pygame.sprite.Sprite):
     
     def draw(self, screen: pygame.Surface) -> None:
         screen.blit(self.image, self.rect)
-        print(screen.blit(self.range_image, self.range_rect))
+        if self.selected:
+            screen.blit(self.range_image, self.range_rect)

@@ -1,4 +1,6 @@
 FPS = 60
+ROWS = 30
+COLS = 20
 
 WHITE = (255, 255, 255)
 KLEINBLUE = (0, 47, 167)
