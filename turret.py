@@ -3,17 +3,6 @@ import pygame
 import setting
 
 class Turret(pygame.sprite.Sprite):
-    def __init__(self, pos) -> None:
-        super().__init__()
-        self.load_images()
-        self.animation_index = 0
-        self.animation_speed = 0.07
-        self.x = (pos[0] + 0.5) * setting.TILE_SIZE
-        self.y = (pos[1] + 0.5) * setting.TILE_SIZE
-        self.image = self.idle_sprite_images_1[0]
-        self.rect = self.image.get_rect()
-        self.rect.center = (self.x, self.y)
-    
     def load_images(self) -> None:
         self.idle_sprite_sheet_images_1 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Idle.png")).convert_alpha()
         self.attack_sprite_sheet_images_1 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Attack.png")).convert_alpha()
@@ -50,6 +39,28 @@ class Turret(pygame.sprite.Sprite):
             self.attack_sprite_images_1.append(temp_image1)
             self.attack_sprite_images_2.append(temp_image2)
             self.attack_sprite_images_3.append(temp_image3)
+
+    def __init__(self, pos) -> None:
+        super().__init__()
+        self.load_images()
+        self.animation_index = 0
+        self.animation_speed = 0.07
+        self.tile_x = pos[0]
+        self.tile_y = pos[1]
+        self.x = (pos[0] + 0.5) * setting.TILE_SIZE
+        self.y = (pos[1] + 0.5) * setting.TILE_SIZE
+        
+        self.image = self.idle_sprite_images_1[0]
+        self.rect = self.image.get_rect()
+        self.rect.center = (self.x, self.y)
+        
+        self.range_image = pygame.Surface((180, 180))
+        self.range_image.fill((0, 0, 0))
+        self.range_image.set_colorkey((0, 0, 0))
+        pygame.draw.circle(self.range_image, "red", (90, 90), 90)
+        self.range_image.set_alpha(100)
+        self.range_rect = self.range_image.get_rect()
+        self.range_rect.topleft = self.rect.topleft
     
     def play_animation(self) -> None:
         self.animation_index += self.animation_speed
@@ -62,3 +73,4 @@ class Turret(pygame.sprite.Sprite):
     
     def draw(self, screen: pygame.Surface) -> None:
         screen.blit(self.image, self.rect)
+        print(screen.blit(self.range_image, self.range_rect))
