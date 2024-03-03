@@ -4,9 +4,11 @@ import setting
 import json
 from button import GameButton
 from turret import Turret
+from enemy import Slime, Goblin, Wolf, Bee
 
 class Level_1:
     def __init__(self) -> None:
+        self.load_data()
         self.clicked = False
         self.create = False
         self.selected = False
@@ -19,8 +21,8 @@ class Level_1:
         self.camp_button = GameButton((255, 204, 0), setting.WHITE, "Go to Camp", (130, 35), (setting.SCREEN_WIDTH + 10, setting.SCREEN_HEIGHT - 60))
         self.turrets_group = pygame.sprite.Group()
         self.enemys_group = pygame.sprite.Group()
+        
         self.load_turret()
-        self.load_data()
     
     def load_data(self):
         with open(os.path.join("maps", "level1", "level1.json"), "r", encoding="UTF-8") as fp:
@@ -28,7 +30,7 @@ class Level_1:
         
         self.json_data = json.loads(data)
         self.tile_data = self.json_data["layers"][0]["data"]
-        self.waypoints = self.json_data["layers"][1]["objects"][0]["polyline"]
+        self.trailhead = [(-35, 433), (90, 433), (90, 90), (410, 90), (410, 500), (725, 500), (725, 250), (930, 250)]
     
     def load_turret(self):
         self.turret_sprite_sheet_image = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Idle.png")).convert_alpha()
@@ -99,6 +101,8 @@ class Level_1:
         self.camp_button.draw(screen)
 
         screen.blit(self.level_1_image, (0, 0))
+        self.enemys_group.update()
+        self.enemys_group.draw(screen)
         self.turrets_group.update()
         for turret in self.turrets_group:
             turret.draw(screen)

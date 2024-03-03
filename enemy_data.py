@@ -1,22 +1,19 @@
 RANK = [
     {
         "health": 45,
-        "injure": 10,
-        "speed": 2
+        "speed": 1
     },
     {
         "health": 105,
-        "injure": 30,
-        "speed": 3
+        "speed": 1.5
     },
     {
         "health": 150,
-        "injure": 60,
-        "speed": 4
+        "speed": 2
     }
 ]
 
-GENERATE = {
+GENERATE = [
     {
         "Slime": 20,
         "goblin": 20,
@@ -35,4 +32,4 @@ GENERATE = {
         "wolf": 60,
         "Bee": 60
     }
-}
+]
