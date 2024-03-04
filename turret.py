@@ -1,3 +1,4 @@
+import math
 import os
 import pygame
 import setting
@@ -39,6 +40,7 @@ class Turret(pygame.sprite.Sprite):
         self.load_images()
         self.selected = False
         self.rank = 1
+        self.angle = 90
         self.tile_x = pos[0]
         self.tile_y = pos[1]
         self.animation_index = 0
@@ -59,6 +61,7 @@ class Turret(pygame.sprite.Sprite):
         self.injure = RANK[self.rank - 1].get("injure")
         self.circle_range = RANK[self.rank - 1].get("range")
         self.cooldown = RANK[self.rank - 1].get("cooldown")
+        self.hurt = RANK[self.rank - 1].get("hurt")
     
     def create_range(self) -> None:    
         self.range_image = pygame.Surface((self.circle_range * 2, self.circle_range * 2))
@@ -86,16 +89,29 @@ class Turret(pygame.sprite.Sprite):
                 self.animation_index = 0
             self.image = self.idle_sprite_images_3[int(self.animation_index)]
     
+    def collision_enemy(self, enemies):
+        for enemy in enemies:
+            x_dist = enemy.pos[0] - self.x
+            y_dist = enemy.pos[1] - self.y
+            dist = math.sqrt(x_dist ** 2 + y_dist ** 2)
+            if dist < self.circle_range:
+                self.target = enemy
+                self.angle = math.degrees(math.atan2(-y_dist, x_dist))
+                self.target.health -= self.hurt
+                print(self.target.health)
+                break
+    
     def update_rank(self) -> None:
         if self.rank < 3:
             self.rank += 1
             self.create_rank()
             self.create_range()
     
-    def update(self) -> None:
+    def update(self, enemies) -> None:
         self.play_animation()
+        self.collision_enemy(enemies)
     
     def draw(self, screen: pygame.Surface) -> None:
-        screen.blit(self.image, self.rect)
+        screen.blit(pygame.transform.rotate(self.image, self.angle - 90), self.rect)
         if self.selected:
             screen.blit(self.range_image, self.range_rect)

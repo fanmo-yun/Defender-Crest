@@ -26,6 +26,7 @@ class Slime(pygame.sprite.Sprite):
         self.trailhead = trailhead
         self.rank_num = rank_num
         self.speed = RANK[self.rank_num - 1].get("speed")
+        self.hurt = RANK[self.rank_num - 1].get("hurt")
         self.health = RANK[self.rank_num - 1].get("health")
         self.pos = Vector2(self.trailhead[0])
         self.targetmove = None
@@ -70,9 +71,14 @@ class Slime(pygame.sprite.Sprite):
             self.animation_index = 0
         self.image = self.walk_sprite_sheet_images[int(self.animation_index)]
     
+    def is_dead(self):
+        if self.health <= 0:
+            self.kill()
+    
     def update(self) -> None:
         self.move()
         self.play_animation()
+        self.is_dead()
     
 class Goblin(Slime):
     def __init__(self, rank_num, trailhead) -> None:

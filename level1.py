@@ -2,8 +2,10 @@ import os
 import pygame
 import setting
 import json
+import random
 from button import GameButton
 from turret import Turret
+from enemy_data import GENERATE
 from enemy import Slime, Goblin, Wolf, Bee
 
 class Level_1:
@@ -13,6 +15,7 @@ class Level_1:
         self.create = False
         self.selected = False
         self.choose_turret = None
+        self.last_generate_time = pygame.time.get_ticks()
         self.level_1_image = pygame.image.load(os.path.join("maps", "level1", "level1.png")).convert_alpha()
         self.buy_turret_button = GameButton((128, 128, 0), setting.WHITE, "Buy", (130, 35), (setting.SCREEN_WIDTH + 10, 30))
         self.cancel_turret_button = GameButton((220, 20, 60), setting.WHITE, "Cancel", (130, 35), (setting.SCREEN_WIDTH + 10, 70))
@@ -23,6 +26,7 @@ class Level_1:
         self.enemys_group = pygame.sprite.Group()
         
         self.load_turret()
+        self.load_enemies()
     
     def load_data(self):
         with open(os.path.join("maps", "level1", "level1.json"), "r", encoding="UTF-8") as fp:
@@ -37,6 +41,12 @@ class Level_1:
         self.subsurface_rect = pygame.Rect(0, 0, 48, 48)
         self.sprite_subsurface = self.turret_sprite_sheet_image.subsurface(self.subsurface_rect)
         self.sprite_subsurface_rect = self.sprite_subsurface.get_rect()
+    
+    def load_enemies(self):
+        self.generate_level = 0
+        self.enemy_num = list()
+        for num in GENERATE[self.generate_level]:
+            self.enemy_num.append(GENERATE[self.generate_level][num])
 
     def selected_turret(self, pos):
         for t in self.turrets_group:
@@ -82,6 +92,30 @@ class Level_1:
             if pygame.mouse.get_pressed()[2] == 0:
                 self.clicked = False
     
+    def generate_enemies(self):
+        self.enemy_rank_num = random.randint(1, 1)
+        self.choose_enemy = random.randint(0, 3)
+
+        if pygame.time.get_ticks() - self.last_generate_time >= random.randint(3000, 6000):
+            if self.choose_enemy == 0:
+                if self.enemy_num[self.choose_enemy] > 0:
+                    self.enemys_group.add(Slime(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            elif self.choose_enemy == 1:
+                if self.enemy_num[self.choose_enemy] > 0:
+                    self.enemys_group.add(Goblin(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            elif self.choose_enemy == 2:
+                if self.enemy_num[self.choose_enemy] > 0:
+                    self.enemys_group.add(Wolf(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            elif self.choose_enemy == 3:
+                if self.enemy_num[self.choose_enemy] > 0:
+                    self.enemys_group.add(Bee(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            
+            self.last_generate_time = pygame.time.get_ticks()
+    
     def draw(self, screen: pygame.Surface):
         if self.buy_turret_button.draw(screen):
             if self.choose_turret != None:
@@ -103,8 +137,9 @@ class Level_1:
         screen.blit(self.level_1_image, (0, 0))
         self.enemys_group.update()
         self.enemys_group.draw(screen)
-        self.turrets_group.update()
+        self.turrets_group.update(self.enemys_group)
         for turret in self.turrets_group:
             turret.draw(screen)
 
         self.create_or_select_turret(screen)
+        self.generate_enemies()

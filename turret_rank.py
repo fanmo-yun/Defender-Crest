@@ -4,6 +4,7 @@ RANK = [
         "range": 90,
         "injure": 15,
         "cooldown": 1200,
+        "hurt": 20,
         "sell": 5
     },
     {
@@ -11,6 +12,7 @@ RANK = [
         "range": 110,
         "injure": 30,
         "cooldown": 900,
+        "hurt": 30,
         "sell": 10
     },
     {
@@ -18,6 +20,7 @@ RANK = [
         "range": 130,
         "injure": 50,
         "cooldown": 500,
+        "hurt": 105,
         "sell": 15
     }
 ]
