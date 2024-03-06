@@ -1,0 +1,85 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "全部文件 (*)",
+    "fileStates": {
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/homepage/gameover.tmx": {
+            "scale": 1.1807142857142856,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 560.6775559588627,
+                "y": 320.1451905626135
+            }
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/homepage/homepage.tmx": {
+            "scale": 1.1168918918918918,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 592.7162734422263,
+                "y": 320.5323653962493
+            }
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/level1/level1.tmx": {
+            "scale": 1.32703125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 480.0188390439185,
+                "y": 320.26374661485926
+            }
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/FieldsTileset.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/Tree1.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/Tree2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/brush.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/camp.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/campfire.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/enemiesandplayers.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/fence.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/flag1.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/pointer.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/shadow.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/shilaimu.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/stone.tsx": {
+            "scaleInDock": 1
+        }
+    },
+    "map.lastUsedFormat": "tmx",
+    "map.width": 35,
+    "openFiles": [
+    ],
+    "project": "gameover.tiled-project",
+    "recentFiles": [
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/homepage/gameover.tmx",
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/homepage/homepage.tmx",
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/level1/level1.tmx"
+    ]
+}

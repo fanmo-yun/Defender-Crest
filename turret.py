@@ -188,7 +188,6 @@ class Turret(pygame.sprite.Sprite):
         
         if pygame.time.get_ticks() - self.last_shoot > self.cooldown:
             enemies[0].health -= self.hurt
-            print(enemies, enemies[0].health)
             self.last_shoot = pygame.time.get_ticks()
     
     def update_rank(self) -> None:

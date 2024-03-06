@@ -55,7 +55,7 @@ class Slime(pygame.sprite.Sprite):
             self.targetmove = Vector2(self.trailhead[self.targetmove_waypoint])
             self.movement = self.targetmove - self.pos
         else:
-            level_health -= 1
+            level_health(self.hurt)
             self.kill()
 
         distance = self.movement.length()
