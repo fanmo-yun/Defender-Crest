@@ -15,6 +15,7 @@ class Level_1:
         self.create = False
         self.selected = False
         self.choose_turret = None
+        self.health = 100
         self.last_generate_time = pygame.time.get_ticks()
         self.level_1_image = pygame.image.load(os.path.join("maps", "level1", "level1.png")).convert_alpha()
         self.buy_turret_button = GameButton((128, 128, 0), setting.WHITE, "Buy", (130, 35), (setting.SCREEN_WIDTH + 10, 30))
@@ -96,27 +97,32 @@ class Level_1:
         self.enemy_rank_num = random.randint(1, 1)
         self.choose_enemy = random.randint(0, 3)
 
-        if pygame.time.get_ticks() - self.last_generate_time >= random.randint(3000, 6000):
+        if pygame.time.get_ticks() - self.last_generate_time >= 500:
             if self.choose_enemy == 0:
-                if self.enemy_num[self.choose_enemy] > 0:
+                if self.enemy_num[self.choose_enemy] >= 0:
                     self.enemys_group.add(Slime(self.enemy_rank_num, self.trailhead))
                     self.enemy_num[self.choose_enemy] -= 1
             elif self.choose_enemy == 1:
-                if self.enemy_num[self.choose_enemy] > 0:
+                if self.enemy_num[self.choose_enemy] >= 0:
                     self.enemys_group.add(Goblin(self.enemy_rank_num, self.trailhead))
                     self.enemy_num[self.choose_enemy] -= 1
             elif self.choose_enemy == 2:
-                if self.enemy_num[self.choose_enemy] > 0:
+                if self.enemy_num[self.choose_enemy] >= 0:
                     self.enemys_group.add(Wolf(self.enemy_rank_num, self.trailhead))
                     self.enemy_num[self.choose_enemy] -= 1
             elif self.choose_enemy == 3:
-                if self.enemy_num[self.choose_enemy] > 0:
+                if self.enemy_num[self.choose_enemy] >= 0:
                     self.enemys_group.add(Bee(self.enemy_rank_num, self.trailhead))
                     self.enemy_num[self.choose_enemy] -= 1
             
             self.last_generate_time = pygame.time.get_ticks()
+
+    def pass_game(self):
+        if self.enemy_num[0] <= 0 and self.enemy_num[1] <= 0 and self.enemy_num[2] <= 0 and self.enemy_num[3] <= 0 and len(self.enemys_group) == 0:
+            pass
     
     def draw(self, screen: pygame.Surface):
+        self.pass_game()
         if self.buy_turret_button.draw(screen):
             if self.choose_turret != None:
                 self.reject_all()
@@ -135,7 +141,7 @@ class Level_1:
         self.camp_button.draw(screen)
 
         screen.blit(self.level_1_image, (0, 0))
-        self.enemys_group.update()
+        self.enemys_group.update(self.health)
         self.enemys_group.draw(screen)
         self.turrets_group.update(self.enemys_group)
         for turret in self.turrets_group:

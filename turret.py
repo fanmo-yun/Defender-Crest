@@ -63,6 +63,7 @@ class Turret(pygame.sprite.Sprite):
         self.angle = 90
         self.tile_x = pos[0]
         self.tile_y = pos[1]
+        self.last_shoot = pygame.time.get_ticks()
         self.animation_index = 0
         self.animation_speed = 0.07
         self.attack_animation_index = 0
@@ -80,7 +81,6 @@ class Turret(pygame.sprite.Sprite):
     def create_rank(self) -> None:
         self.cost = RANK[self.rank - 1].get("cost")
         self.sell = RANK[self.rank - 1].get("sell")
-        self.injure = RANK[self.rank - 1].get("injure")
         self.circle_range = RANK[self.rank - 1].get("range")
         self.cooldown = RANK[self.rank - 1].get("cooldown")
         self.hurt = RANK[self.rank - 1].get("hurt")
@@ -177,15 +177,19 @@ class Turret(pygame.sprite.Sprite):
                 self.image = self.attack_sprite_images_3_up[int(self.attack_animation_index)]
 
     def shoot_enemy(self, enemies):
-        for enemy in enemies:
-            if enemy.rect.centerx < self.rect.centerx:
-                self.play_attack_animation(1)
-            elif enemy.rect.centerx > self.rect.centerx:
-                self.play_attack_animation(2)
-            elif enemy.rect.centery < self.rect.centery:
-                self.play_attack_animation(4)
-            elif enemy.rect.centery > self.rect.centery:
-                self.play_attack_animation(3)
+        if enemies[0].rect.centerx < self.rect.centerx:
+            self.play_attack_animation(1)
+        elif enemies[0].rect.centerx > self.rect.centerx:
+            self.play_attack_animation(2)
+        elif enemies[0].rect.centery < self.rect.centery:
+            self.play_attack_animation(4)
+        elif enemies[0].rect.centery > self.rect.centery:
+            self.play_attack_animation(3)
+        
+        if pygame.time.get_ticks() - self.last_shoot > self.cooldown:
+            enemies[0].health -= self.hurt
+            print(enemies, enemies[0].health)
+            self.last_shoot = pygame.time.get_ticks()
     
     def update_rank(self) -> None:
         if self.rank < 3:
@@ -201,7 +205,6 @@ class Turret(pygame.sprite.Sprite):
         else:
             ene = pygame.sprite.spritecollide(self, enemies, False, pygame.sprite.collide_circle_ratio(1.8))
         if ene:
-            print(ene)
             self.shoot_enemy(ene)
         else:
             self.play_idle_animation()

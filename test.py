@@ -1,5 +1,6 @@
-class A:
-    def __init__(self) -> None:
-        print(self.__class__.__name__)
+a = [10]
 
-a = A()
+while True:
+    if a[0] >= 0:
+        a[0] -= 1
+        print(a[0])
