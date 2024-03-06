@@ -128,17 +128,64 @@ class Turret(pygame.sprite.Sprite):
                     self.attack_animation_index = 0
                 self.image = self.attack_sprite_images_3_left[int(self.attack_animation_index)]
         elif distance == 2:
-            pass
+            if self.rank == 1:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_1_left):
+                    self.attack_animation_index = 0
+                self.image = pygame.transform.flip(self.attack_sprite_images_1_left[int(self.attack_animation_index)], True, False)
+            elif self.rank == 2:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_2_left):
+                    self.attack_animation_index = 0
+                self.image = pygame.transform.flip(self.attack_sprite_images_2_left[int(self.attack_animation_index)], True, False)
+            else:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_3_left):
+                    self.attack_animation_index = 0
+                self.image = pygame.transform.flip(self.attack_sprite_images_3_left[int(self.attack_animation_index)], True, False)
         elif distance == 3:
-            pass
+            if self.rank == 1:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_1_down):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_1_down[int(self.attack_animation_index)]
+            elif self.rank == 2:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_2_down):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_2_down[int(self.attack_animation_index)]
+            else:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_3_down):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_3_down[int(self.attack_animation_index)]
         else:
-            pass
+            if self.rank == 1:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_1_up):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_1_up[int(self.attack_animation_index)]
+            elif self.rank == 2:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_2_up):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_2_up[int(self.attack_animation_index)]
+            else:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_3_up):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_3_up[int(self.attack_animation_index)]
 
     def shoot_enemy(self, enemies):
         for enemy in enemies:
             if enemy.rect.centerx < self.rect.centerx:
                 self.play_attack_animation(1)
-
+            elif enemy.rect.centerx > self.rect.centerx:
+                self.play_attack_animation(2)
+            elif enemy.rect.centery < self.rect.centery:
+                self.play_attack_animation(4)
+            elif enemy.rect.centery > self.rect.centery:
+                self.play_attack_animation(3)
     
     def update_rank(self) -> None:
         if self.rank < 3:
