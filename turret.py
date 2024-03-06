@@ -7,33 +7,53 @@ from turret_rank import RANK
 class Turret(pygame.sprite.Sprite):
     def load_images(self) -> None:
         self.idle_sprite_images_1 = list()
-        self.attack_sprite_images_1 = list()
+        self.attack_sprite_images_1_down = list()
+        self.attack_sprite_images_1_left = list()
+        self.attack_sprite_images_1_up = list()
         
         self.idle_sprite_images_2 = list()
-        self.attack_sprite_images_2 = list()
+        self.attack_sprite_images_2_down = list()
+        self.attack_sprite_images_2_left = list()
+        self.attack_sprite_images_2_up = list()
         
         self.idle_sprite_images_3 = list()
-        self.attack_sprite_images_3 = list()
+        self.attack_sprite_images_3_down = list()
+        self.attack_sprite_images_3_left = list()
+        self.attack_sprite_images_3_up = list()
         
-        self.idle_sprite_sheet_images_1 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Idle.png")).convert_alpha()
-        self.attack_sprite_sheet_images_1 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Attack.png")).convert_alpha()
-        
-        self.idle_sprite_sheet_images_2 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "2", "D_Idle.png")).convert_alpha()
-        self.attack_sprite_sheet_images_2 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "2", "D_Attack.png")).convert_alpha()
-        
-        self.idle_sprite_sheet_images_3 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "3", "D_Idle.png")).convert_alpha()
-        self.attack_sprite_sheet_images_3 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "3", "D_Attack.png")).convert_alpha()
+        idle_sprite_sheet_images_1 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Idle.png")).convert_alpha()
+        attack_sprite_sheet_images_1_down = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Attack.png")).convert_alpha()
+        attack_sprite_sheet_images_1_left = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "S_Attack.png")).convert_alpha()
+        attack_sprite_sheet_images_1_up = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "U_Attack.png")).convert_alpha()
+
+        idle_sprite_sheet_images_2 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "2", "D_Idle.png")).convert_alpha()
+        attack_sprite_sheet_images_2_down = pygame.image.load(os.path.join("assets", "towers", "3 Units", "2", "D_Attack.png")).convert_alpha()
+        attack_sprite_sheet_images_2_left = pygame.image.load(os.path.join("assets", "towers", "3 Units", "2", "S_Attack.png")).convert_alpha()
+        attack_sprite_sheet_images_2_up = pygame.image.load(os.path.join("assets", "towers", "3 Units", "2", "U_Attack.png")).convert_alpha()
+    
+        idle_sprite_sheet_images_3 = pygame.image.load(os.path.join("assets", "towers", "3 Units", "3", "D_Idle.png")).convert_alpha()
+        attack_sprite_sheet_images_3_down = pygame.image.load(os.path.join("assets", "towers", "3 Units", "3", "D_Attack.png")).convert_alpha()
+        attack_sprite_sheet_images_3_left = pygame.image.load(os.path.join("assets", "towers", "3 Units", "3", "S_Attack.png")).convert_alpha()
+        attack_sprite_sheet_images_3_up = pygame.image.load(os.path.join("assets", "towers", "3 Units", "3", "U_Attack.png")).convert_alpha()
         
         
         for idle_image in range(4):
-            self.idle_sprite_images_1.append(self.idle_sprite_sheet_images_1.subsurface(idle_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
-            self.idle_sprite_images_2.append(self.idle_sprite_sheet_images_2.subsurface(idle_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
-            self.idle_sprite_images_3.append(self.idle_sprite_sheet_images_3.subsurface(idle_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.idle_sprite_images_1.append(idle_sprite_sheet_images_1.subsurface(idle_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.idle_sprite_images_2.append(idle_sprite_sheet_images_2.subsurface(idle_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.idle_sprite_images_3.append(idle_sprite_sheet_images_3.subsurface(idle_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
             
         for attack_image in range(6):
-            self.attack_sprite_images_1.append(self.attack_sprite_sheet_images_1.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
-            self.attack_sprite_images_2.append(self.attack_sprite_sheet_images_2.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
-            self.attack_sprite_images_3.append(self.attack_sprite_sheet_images_3.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.attack_sprite_images_1_down.append(attack_sprite_sheet_images_1_down.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.attack_sprite_images_2_down.append(attack_sprite_sheet_images_2_down.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.attack_sprite_images_3_down.append(attack_sprite_sheet_images_3_down.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+
+            self.attack_sprite_images_1_left.append(attack_sprite_sheet_images_1_left.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.attack_sprite_images_2_left.append(attack_sprite_sheet_images_2_left.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.attack_sprite_images_3_left.append(attack_sprite_sheet_images_3_left.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+
+            self.attack_sprite_images_1_up.append(attack_sprite_sheet_images_1_up.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.attack_sprite_images_2_up.append(attack_sprite_sheet_images_2_up.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
+            self.attack_sprite_images_3_up.append(attack_sprite_sheet_images_3_up.subsurface(attack_image * setting.TURRET_SIZE, 0, setting.TURRET_SIZE, setting.TURRET_SIZE))
 
     def __init__(self, pos) -> None:
         super().__init__()
@@ -45,6 +65,8 @@ class Turret(pygame.sprite.Sprite):
         self.tile_y = pos[1]
         self.animation_index = 0
         self.animation_speed = 0.07
+        self.attack_animation_index = 0
+        self.attack_animation_speed = 0.07
         self.create_rank()
         self.x = (pos[0] + 0.5) * setting.TILE_SIZE
         self.y = (pos[1] + 0.5) * setting.TILE_SIZE
@@ -69,10 +91,9 @@ class Turret(pygame.sprite.Sprite):
         self.range_image.set_colorkey((0, 0, 0))
         pygame.draw.circle(self.range_image, (255, 255, 255), (self.circle_range, self.circle_range), self.circle_range)
         self.range_image.set_alpha(100)
-        self.range_rect = self.range_image.get_rect()
-        self.range_rect.center = self.rect.center
+        self.range_rect = self.range_image.get_rect(center=self.rect.center)
     
-    def play_animation(self) -> None:
+    def play_idle_animation(self) -> None:
         if self.rank == 1:
             self.animation_index += self.animation_speed
             if self.animation_index >= len(self.idle_sprite_images_1):
@@ -89,17 +110,35 @@ class Turret(pygame.sprite.Sprite):
                 self.animation_index = 0
             self.image = self.idle_sprite_images_3[int(self.animation_index)]
     
-    def collision_enemy(self, enemies):
+    def play_attack_animation(self, distance: int):
+        if distance == 1:
+            if self.rank == 1:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_1_left):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_1_left[int(self.attack_animation_index)]
+            elif self.rank == 2:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_2_left):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_2_left[int(self.attack_animation_index)]
+            else:
+                self.attack_animation_index += self.attack_animation_speed
+                if self.attack_animation_index >= len(self.attack_sprite_images_3_left):
+                    self.attack_animation_index = 0
+                self.image = self.attack_sprite_images_3_left[int(self.attack_animation_index)]
+        elif distance == 2:
+            pass
+        elif distance == 3:
+            pass
+        else:
+            pass
+
+    def shoot_enemy(self, enemies):
         for enemy in enemies:
-            x_dist = enemy.pos[0] - self.x
-            y_dist = enemy.pos[1] - self.y
-            dist = math.sqrt(x_dist ** 2 + y_dist ** 2)
-            if dist < self.circle_range:
-                self.target = enemy
-                self.angle = math.degrees(math.atan2(-y_dist, x_dist))
-                self.target.health -= self.hurt
-                print(self.target.health)
-                break
+            if enemy.rect.centerx < self.rect.centerx:
+                self.play_attack_animation(1)
+
     
     def update_rank(self) -> None:
         if self.rank < 3:
@@ -108,10 +147,19 @@ class Turret(pygame.sprite.Sprite):
             self.create_range()
     
     def update(self, enemies) -> None:
-        self.play_animation()
-        self.collision_enemy(enemies)
+        if self.rank == 1:
+            ene = pygame.sprite.spritecollide(self, enemies, False, pygame.sprite.collide_circle_ratio(1.35))
+        elif self.rank == 2:
+            ene = pygame.sprite.spritecollide(self, enemies, False, pygame.sprite.collide_circle_ratio(1.55))
+        else:
+            ene = pygame.sprite.spritecollide(self, enemies, False, pygame.sprite.collide_circle_ratio(1.8))
+        if ene:
+            print(ene)
+            self.shoot_enemy(ene)
+        else:
+            self.play_idle_animation()
     
     def draw(self, screen: pygame.Surface) -> None:
-        screen.blit(pygame.transform.rotate(self.image, self.angle - 90), self.rect)
+        screen.blit(self.image, self.rect)
         if self.selected:
             screen.blit(self.range_image, self.range_rect)

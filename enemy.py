@@ -40,8 +40,7 @@ class Slime(pygame.sprite.Sprite):
         self.animation_speed = 0.07
         
         self.image = pygame.transform.rotate(self.walk_sprite_sheet_images[0], self.angle)
-        self.rect = self.image.get_rect()
-        self.rect = self.pos
+        self.rect = self.image.get_rect(center=(self.pos.x, self.pos.y))
     
     def process_sheets(self):
         self.walk_sprite_sheet_images = list()
@@ -90,15 +89,14 @@ class Wolf(Goblin):
     
     def play_animation(self):
         distance = self.targetmove - self.pos
-        self.angle = math.degrees(math.atan2(-distance[1], distance[0])) +90
+        self.angle = math.degrees(math.atan2(-distance[1], distance[0])) + 90
         
         self.animation_index += self.animation_speed
         if self.animation_index >= len(self.walk_sprite_sheet_images):
             self.animation_index = 0
         self.image = self.walk_sprite_sheet_images[int(self.animation_index)]
         self.image = pygame.transform.rotate(self.image, self.angle)
-        self.rect = self.image.get_rect()
-        self.rect = self.pos
+        self.rect = self.image.get_rect(topleft=(self.pos.x, self.pos.y))
 
 class Bee(Wolf):
     def __init__(self, rank_num, trailhead) -> None:
