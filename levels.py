@@ -45,8 +45,8 @@ class Level_1:
         self.trailhead = [(-35, 433), (90, 433), (90, 90), (410, 90), (410, 500), (725, 500), (725, 250), (930, 250)]
     
     def load_level_data(self):
-        self.money = 60
-        self.turret_num = 15
+        self.money = 100000
+        self.turret_num = 100
         self.level_health = 100
     
     def load_turret_num_image(self):
