@@ -12,7 +12,6 @@ from enemy import Slime, Goblin, Wolf, Bee
 class Level_1:
     def __init__(self) -> None:
         self.load_data()
-        self.health = 100
         self.clicked = False
         self.create = False
         self.selected = False
@@ -20,7 +19,9 @@ class Level_1:
         self.is_pass_game = False
         self.game_over = False
         self.last_generate_time = pygame.time.get_ticks()
+        self.font = pygame.font.Font(os.path.join("font", "JetBrainsMono-Bold.ttf"), 20)
         self.level_1_image = pygame.image.load(os.path.join("maps", "level1", "level1.png")).convert_alpha()
+        self.life_image = pygame.image.load(os.path.join("assets", "life" ,"life.png")).convert_alpha()
         self.buy_turret_button = GameButton((128, 128, 0), setting.WHITE, "Buy", (130, 35), (setting.SCREEN_WIDTH + 10, 30))
         self.cancel_turret_button = GameButton((220, 20, 60), setting.WHITE, "Cancel", (130, 35), (setting.SCREEN_WIDTH + 10, 70))
         self.upgrade_turret_button = GameButton((255, 140, 0), setting.WHITE, "Upgrade", (130, 35), (setting.SCREEN_WIDTH + 10, 110))
@@ -29,6 +30,9 @@ class Level_1:
         self.turrets_group = pygame.sprite.Group()
         self.enemys_group = pygame.sprite.Group()
         
+        self.load_level_data()
+        self.load_coin_image()
+        self.load_turret_num_image()
         self.load_turret()
         self.load_enemies()
     
@@ -39,6 +43,21 @@ class Level_1:
         self.json_data = json.loads(data)
         self.tile_data = self.json_data["layers"][0]["data"]
         self.trailhead = [(-35, 433), (90, 433), (90, 90), (410, 90), (410, 500), (725, 500), (725, 250), (930, 250)]
+    
+    def load_level_data(self):
+        self.money = 60
+        self.turret_num = 15
+        self.level_health = 100
+    
+    def load_turret_num_image(self):
+        self.turret_num_sheet_image = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "S_Idle.png")).convert_alpha()
+        self.num_subsurface_rect = pygame.Rect(0, 0, 48, 48)
+        self.num_sprite_subsurface = self.turret_num_sheet_image.subsurface(self.num_subsurface_rect)
+    
+    def load_coin_image(self):
+        self.coin_image = pygame.image.load(os.path.join("assets", "coin", "GoldCoinSpinning.png")).convert_alpha()
+        self.coin_subsurface_rect = pygame.Rect(0, 0, 8, 8)
+        self.coin_sprite_subsurface = self.coin_image.subsurface(self.coin_subsurface_rect)
     
     def load_turret(self):
         self.turret_sprite_sheet_image = pygame.image.load(os.path.join("assets", "towers", "3 Units", "1", "D_Idle.png")).convert_alpha()
@@ -100,7 +119,7 @@ class Level_1:
         self.enemy_rank_num = random.randint(1, 1)
         self.choose_enemy = random.randint(0, 3)
 
-        if pygame.time.get_ticks() - self.last_generate_time >= 10:
+        if pygame.time.get_ticks() - self.last_generate_time >= random.randint(1000, 15000):
             if self.choose_enemy == 0:
                 if self.enemy_num[self.choose_enemy] >= 0:
                     self.enemys_group.add(Slime(self.enemy_rank_num, self.trailhead))
@@ -121,52 +140,80 @@ class Level_1:
             self.last_generate_time = pygame.time.get_ticks()
 
     def pass_game(self):
-        if self.enemy_num[0] <= 0 and self.enemy_num[1] <= 0 and self.enemy_num[2] <= 0 and self.enemy_num[3] <= 0 and len(self.enemys_group) == 0:
+        if self.enemy_num[0] <= 0 and self.enemy_num[1] <= 0 and self.enemy_num[2] <= 0 and self.enemy_num[3] <= 0 and len(self.enemys_group) <= 0:
             self.is_pass_game = True
     
     def is_game_over(self):
-        if self.health <= 0:
+        if self.level_health <= 0:
             self.game_over = True
     
     def level_health_minus(self, enemy_hurt: int):
-        self.health -= enemy_hurt
+        self.level_health -= enemy_hurt
+    
+    def level_money_plus(self, reward: int):
+        self.money += reward
+    
+    def draw_num_images(self, screen: pygame.Surface):
+        screen.blit(pygame.transform.scale(self.life_image, (25, 25)), (3, 7))
+        screen.blit(self.num_sprite_subsurface, (68, 2))
+        screen.blit(pygame.transform.scale(self.coin_sprite_subsurface, (25, 25)), (145, 8))
+        
+        screen.blit(self.font.render(str(int(self.level_health)), True, setting.WHITE), (35, 7))
+        screen.blit(self.font.render(str(self.turret_num), True, setting.WHITE), (108, 7))
+        screen.blit(self.font.render(str(self.money), True, setting.WHITE), (175, 7))
     
     def draw_screen(self, screen: pygame.Surface):
         if self.buy_turret_button.draw(screen):
-            if self.choose_turret != None:
-                self.reject_all()
-            self.create = True
-            self.selected = False
+            if self.money > 0 and self.turret_num > 0:
+                if self.choose_turret != None:
+                    self.reject_all()
+                self.money -= 5
+                self.turret_num -= 1
+                self.create = True
+                self.selected = False
 
         if self.selected:
             if self.cancel_turret_button.draw(screen):
                 self.reject_all()
                 self.selected = False
             if self.upgrade_turret_button.draw(screen):
-                self.choose_turret.update_rank()
+                if self.money - self.choose_turret.cost > 0:
+                    self.money -= self.choose_turret.cost
+                    self.choose_turret.update_rank()
             if self.sell_turret_button.draw(screen):
                 self.choose_turret.kill()
+                self.money += self.choose_turret.sell
+                self.turret_num += 1
                 self.selected = False
         self.camp_button.draw(screen)
 
         screen.blit(self.level_1_image, (0, 0))
-        self.enemys_group.update(self.level_health_minus)
+        self.enemys_group.update(self.level_health_minus, self.level_money_plus)
         self.enemys_group.draw(screen)
         self.turrets_group.update(self.enemys_group)
         for turret in self.turrets_group:
             turret.draw(screen)
 
+        self.draw_num_images(screen)
         self.create_or_select_turret(screen)
         self.generate_enemies()
     
     def draw(self, screen: pygame.Surface):
+        self.pass_game()
         if self.game_over == False:
             self.is_game_over()
             if self.is_pass_game == False:
                 self.draw_screen(screen)
-                self.pass_game()
             else:
-                pass
+                self.enemys_group.empty()
+                self.turrets_group.empty()
+                self.level2 = Level_2()
+                self.level2.draw(screen)
         else:
             self.gameover_level = GameOver()
             self.gameover_level.draw(screen)
+
+
+class Level_2(Level_1):
+    def __init__(self) -> None:
+        super().__init__()

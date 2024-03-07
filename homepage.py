@@ -3,7 +3,7 @@ import sys
 import pygame
 import setting
 from button import Button
-from level1 import Level_1
+from levels import Level_1
 
 class HomePage:
     def __init__(self) -> None:

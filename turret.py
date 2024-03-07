@@ -203,6 +203,7 @@ class Turret(pygame.sprite.Sprite):
             ene = pygame.sprite.spritecollide(self, enemies, False, pygame.sprite.collide_circle_ratio(1.55))
         else:
             ene = pygame.sprite.spritecollide(self, enemies, False, pygame.sprite.collide_circle_ratio(1.8))
+
         if ene:
             self.shoot_enemy(ene)
         else:
