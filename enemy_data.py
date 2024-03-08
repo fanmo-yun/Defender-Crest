@@ -21,21 +21,21 @@ RANK = [
 
 GENERATE = [
     {
-        "Slime": 20,
-        "goblin": 20,
-        "wolf": 20,
-        "Bee": 20
+        "Slime": 7,
+        "goblin": 7,
+        "wolf": 7,
+        "Bee": 7
     },
     {
-        "Slime": 40,
-        "goblin": 40,
-        "wolf": 40,
-        "Bee": 40
+        "Slime": 7,
+        "goblin": 10,
+        "wolf": 6,
+        "Bee": 10
     },
     {
-        "Slime": 60,
-        "goblin": 60,
-        "wolf": 60,
-        "Bee": 60
+        "Slime": 10,
+        "goblin": 11,
+        "wolf": 10,
+        "Bee": 5
     }
 ]

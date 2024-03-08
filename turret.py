@@ -190,8 +190,9 @@ class Turret(pygame.sprite.Sprite):
             enemies[0].health -= self.hurt
             self.last_shoot = pygame.time.get_ticks()
     
-    def update_rank(self) -> None:
+    def update_rank(self, update_money) -> None:
         if self.rank < 3:
+            update_money(self.cost)
             self.rank += 1
             self.create_rank()
             self.create_range()

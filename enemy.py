@@ -35,7 +35,6 @@ class Slime(pygame.sprite.Sprite):
         self.movement = None
         self.targetmove_waypoint = 1
         self.angle = 0
-        self.dead = False
         self.sprite_sheets = load_enemy_sprite_sheets(self.__class__.__name__)
         self.process_sheets()
         
@@ -55,6 +54,7 @@ class Slime(pygame.sprite.Sprite):
             
     def move(self, level_health):
         if (self.pos.x, self.pos.y) == self.trailhead[len(self.trailhead) - 1]:
+            self.health = 0
             level_health(self.hurt)
             self.kill()
         else:
@@ -69,6 +69,7 @@ class Slime(pygame.sprite.Sprite):
                 if distance != 0:
                     self.pos -= self.movement.normalize() * distance
                 self.targetmove_waypoint += 1
+            self.rect.topleft = (self.pos.x, self.pos.y)
     
     def play_animation(self):
         self.animation_index += self.animation_speed
@@ -78,9 +79,8 @@ class Slime(pygame.sprite.Sprite):
     
     def is_dead(self, plus):
         if self.health <= 0:
-            # plus(self.reward)
-            self.dead = True
-            # self.kill()
+            plus(self.reward)
+            self.kill()
     
     def update(self, level_health, money_plus) -> None:
         self.is_dead(money_plus)

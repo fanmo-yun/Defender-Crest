@@ -45,8 +45,8 @@ class Level_1:
         self.trailhead = [(-35, 433), (90, 433), (90, 90), (410, 90), (410, 500), (725, 500), (725, 250), (930, 250)]
     
     def load_level_data(self):
-        self.money = 100000
-        self.turret_num = 100
+        self.money = 100
+        self.turret_num = 15
         self.level_health = 100
     
     def load_turret_num_image(self):
@@ -87,6 +87,9 @@ class Level_1:
         for t in self.turrets_group:
             t.selected = False
     
+    def update_turret_money(self, spend: int):
+        self.money -= spend
+    
     def create_or_select_turret(self, screen: pygame.Surface):
         pos = pygame.mouse.get_pos()
         mouse_set_tile_x = pos[0] // setting.TILE_SIZE
@@ -119,7 +122,7 @@ class Level_1:
         self.enemy_rank_num = random.randint(1, 1)
         self.choose_enemy = random.randint(0, 3)
 
-        if pygame.time.get_ticks() - self.last_generate_time >= random.randint(1000, 15000):
+        if pygame.time.get_ticks() - self.last_generate_time >= random.randint(1500, 8000):
             if self.choose_enemy == 0:
                 if self.enemy_num[self.choose_enemy] >= 0:
                     self.enemys_group.add(Slime(self.enemy_rank_num, self.trailhead))
@@ -178,8 +181,7 @@ class Level_1:
                 self.selected = False
             if self.upgrade_turret_button.draw(screen):
                 if self.money - self.choose_turret.cost > 0:
-                    self.money -= self.choose_turret.cost
-                    self.choose_turret.update_rank()
+                    self.choose_turret.update_rank(self.update_turret_money)
             if self.sell_turret_button.draw(screen):
                 self.choose_turret.kill()
                 self.money += self.choose_turret.sell
@@ -212,7 +214,6 @@ class Level_1:
         else:
             self.gameover_level = GameOver()
             self.gameover_level.draw(screen)
-
 
 class Level_2(Level_1):
     def __init__(self) -> None:
