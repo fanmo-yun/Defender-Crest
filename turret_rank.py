@@ -3,7 +3,7 @@ RANK = [
         "cost": 15,
         "range": 90,
         "cooldown": 1200,
-        "hurt": 7,
+        "hurt": 200,
         "sell": 5
     },
     {

@@ -22,7 +22,6 @@ class Level_1:
         self.camp = False
         self.last_generate_time = pygame.time.get_ticks()
         self.font = pygame.font.Font(os.path.join("font", "JetBrainsMono-Bold.ttf"), 20)
-        self.level_1_image = pygame.image.load(os.path.join("maps", "level1", "level1.png")).convert_alpha()
         self.life_image = pygame.image.load(os.path.join("assets", "life" ,"life.png")).convert_alpha()
         self.buy_turret_button = GameButton((128, 128, 0), setting.WHITE, "Buy", (130, 35), (setting.SCREEN_WIDTH + 10, 30))
         self.cancel_turret_button = GameButton((220, 20, 60), setting.WHITE, "Cancel", (130, 35), (setting.SCREEN_WIDTH + 10, 70))
@@ -33,11 +32,15 @@ class Level_1:
         self.enemys_group = pygame.sprite.Group()
         self.camp_mode = Camp()
         
+        self.load_level_image()
         self.load_level_data()
         self.load_coin_image()
         self.load_turret_num_image()
         self.load_turret()
         self.load_enemies()
+    
+    def load_level_image(self):
+        self.level_image = pygame.image.load(os.path.join("maps", "level1", "level1.png")).convert_alpha()
     
     def load_data(self):
         with open(os.path.join("maps", "level1", "level1.json"), "r", encoding="UTF-8") as fp:
@@ -89,9 +92,6 @@ class Level_1:
     def reject_all(self):
         for t in self.turrets_group:
             t.selected = False
-    
-    def update_turret_money(self, spend: int):
-        self.money -= spend
     
     def create_or_select_turret(self, screen: pygame.Surface):
         pos = pygame.mouse.get_pos()
@@ -159,6 +159,9 @@ class Level_1:
     def level_money_plus(self, reward: int):
         self.money += reward
     
+    def update_turret_money(self, spend: int):
+        self.money -= spend
+    
     def level_money_minus(self, spend: int, add_num: int, update_camp):
         if self.money - spend > 0:
             self.money -= spend
@@ -202,7 +205,7 @@ class Level_1:
         if self.camp_button.draw(screen):
             self.camp = True
 
-        screen.blit(self.level_1_image, (0, 0))
+        screen.blit(self.level_image, (0, 0))
         self.enemys_group.update(self.level_health_minus, self.level_money_plus)
         self.enemys_group.draw(screen)
         self.turrets_group.update(self.enemys_group)
@@ -222,8 +225,6 @@ class Level_1:
             else:
                 self.enemys_group.empty()
                 self.turrets_group.empty()
-                self.level2 = Level_2()
-                self.level2.draw(screen)
         else:
             self.gameover_level = GameOver()
             self.gameover_level.draw(screen)
@@ -238,3 +239,81 @@ class Level_1:
 class Level_2(Level_1):
     def __init__(self) -> None:
         super().__init__()
+    
+    def load_level_image(self):
+        self.level_image = pygame.image.load(os.path.join("maps", "level2", "level2.png")).convert_alpha()
+    
+    def load_data(self):
+        with open(os.path.join("maps", "level2", "level2.json"), "r", encoding="UTF-8") as fp:
+            data = fp.read()
+        
+        self.json_data = json.loads(data)
+        self.tile_data = self.json_data["layers"][0]["data"]
+        self.trailhead = [(-80, 80), (790, 80), (790, 270), (90, 270), (410, 500), (90, 460), (855, 460), (855, 610)]
+    
+    def create_or_select_turret(self, screen: pygame.Surface):
+        pos = pygame.mouse.get_pos()
+        mouse_set_tile_x = pos[0] // setting.TILE_SIZE
+        mouse_set_tile_y = pos[1] // setting.TILE_SIZE
+        if pos[0] < setting.SCREEN_WIDTH and pos[1] < setting.SCREEN_HEIGHT and self.create:
+            self.sprite_subsurface_rect.center = pos
+            screen.blit(self.sprite_subsurface, self.sprite_subsurface_rect)
+            if pygame.mouse.get_pressed()[2] == 1 and self.clicked == False:
+                if self.check_turret((mouse_set_tile_x, mouse_set_tile_y)):
+                    mouse_set_tile_num = (mouse_set_tile_y * setting.COLS) + mouse_set_tile_x
+                    if self.tile_data[mouse_set_tile_num] == 84:
+                        self.turrets_group.add(Turret((mouse_set_tile_x, mouse_set_tile_y)))
+                        self.clicked = True
+                        self.create = False
+            if pygame.mouse.get_pressed()[2] == 0:
+                self.clicked = False
+        elif pos[0] < setting.SCREEN_WIDTH and pos[1] < setting.SCREEN_HEIGHT and self.create == False:
+            if pygame.mouse.get_pressed()[2] == 1 and self.clicked == False:
+                self.reject_all()
+                self.choose_turret = self.selected_turret((mouse_set_tile_x, mouse_set_tile_y))
+                if self.choose_turret != None:
+                    self.choose_turret.selected = True
+                    self.selected = True
+                self.clicked = True
+                self.create = False
+            if pygame.mouse.get_pressed()[2] == 0:
+                self.clicked = False
+    
+    def load_level_data(self):
+        self.money = 120
+        self.turret_num = 15
+        self.level_health = 200
+    
+    def load_enemies(self):
+        self.generate_level = 1
+        self.enemy_num = list()
+        for num in GENERATE[self.generate_level]:
+            self.enemy_num.append(GENERATE[self.generate_level][num])
+
+    def generate_enemies(self):
+        self.enemy_rank_num = random.randint(1, 2)
+        self.choose_enemy = random.randint(0, 3)
+
+        if pygame.time.get_ticks() - self.last_generate_time >= random.randint(1500, 8000):
+            if self.choose_enemy == 0:
+                if self.enemy_num[self.choose_enemy] >= 0:
+                    self.enemys_group.add(Slime(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            elif self.choose_enemy == 1:
+                if self.enemy_num[self.choose_enemy] >= 0:
+                    self.enemys_group.add(Goblin(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            elif self.choose_enemy == 2:
+                if self.enemy_num[self.choose_enemy] >= 0:
+                    self.enemys_group.add(Wolf(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            elif self.choose_enemy == 3:
+                if self.enemy_num[self.choose_enemy] >= 0:
+                    self.enemys_group.add(Bee(self.enemy_rank_num, self.trailhead))
+                    self.enemy_num[self.choose_enemy] -= 1
+            
+            self.last_generate_time = pygame.time.get_ticks()
+
+# class Level_3(Level_1):
+#     def __init__(self) -> None:
+#         super().__init__()

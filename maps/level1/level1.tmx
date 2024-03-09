@@ -178,9 +178,4 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="waypoints">
-  <object id="2" x="-69" y="465">
-   <polyline points="0,0 182,0 182,-355 501,-355 501,64 823,65 823,-194 1058,-194"/>
-  </object>
- </objectgroup>
 </map>
