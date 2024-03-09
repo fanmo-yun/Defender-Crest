@@ -3,10 +3,11 @@ import pygame
 import setting
 import json
 import random
-from button import GameButton
+from camp import Camp
 from turret import Turret
-from enemy_data import GENERATE
 from gameover import GameOver
+from button import GameButton
+from enemy_data import GENERATE
 from enemy import Slime, Goblin, Wolf, Bee
 
 class Level_1:
@@ -18,6 +19,7 @@ class Level_1:
         self.choose_turret = None
         self.is_pass_game = False
         self.game_over = False
+        self.camp = False
         self.last_generate_time = pygame.time.get_ticks()
         self.font = pygame.font.Font(os.path.join("font", "JetBrainsMono-Bold.ttf"), 20)
         self.level_1_image = pygame.image.load(os.path.join("maps", "level1", "level1.png")).convert_alpha()
@@ -29,6 +31,7 @@ class Level_1:
         self.camp_button = GameButton((255, 204, 0), setting.WHITE, "Go to Camp", (130, 35), (setting.SCREEN_WIDTH + 10, setting.SCREEN_HEIGHT - 60))
         self.turrets_group = pygame.sprite.Group()
         self.enemys_group = pygame.sprite.Group()
+        self.camp_mode = Camp()
         
         self.load_level_data()
         self.load_coin_image()
@@ -45,7 +48,7 @@ class Level_1:
         self.trailhead = [(-35, 433), (90, 433), (90, 90), (410, 90), (410, 500), (725, 500), (725, 250), (930, 250)]
     
     def load_level_data(self):
-        self.money = 100
+        self.money = 80
         self.turret_num = 15
         self.level_health = 100
     
@@ -156,6 +159,15 @@ class Level_1:
     def level_money_plus(self, reward: int):
         self.money += reward
     
+    def level_money_minus(self, spend: int, add_num: int, update_camp):
+        if self.money - spend > 0:
+            self.money -= spend
+            self.turret_num += add_num
+            update_camp()
+    
+    def not_camp(self):
+        self.camp = False
+    
     def draw_num_images(self, screen: pygame.Surface):
         screen.blit(pygame.transform.scale(self.life_image, (25, 25)), (3, 7))
         screen.blit(self.num_sprite_subsurface, (68, 2))
@@ -187,7 +199,8 @@ class Level_1:
                 self.money += self.choose_turret.sell
                 self.turret_num += 1
                 self.selected = False
-        self.camp_button.draw(screen)
+        if self.camp_button.draw(screen):
+            self.camp = True
 
         screen.blit(self.level_1_image, (0, 0))
         self.enemys_group.update(self.level_health_minus, self.level_money_plus)
@@ -200,7 +213,7 @@ class Level_1:
         self.create_or_select_turret(screen)
         self.generate_enemies()
     
-    def draw(self, screen: pygame.Surface):
+    def normal_mode(self, screen: pygame.Surface):
         self.pass_game()
         if self.game_over == False:
             self.is_game_over()
@@ -214,6 +227,13 @@ class Level_1:
         else:
             self.gameover_level = GameOver()
             self.gameover_level.draw(screen)
+    
+    def draw(self, screen: pygame.Surface):
+        if self.camp == False:
+            self.normal_mode(screen)
+        else:
+            self.camp_mode.draw(screen, self.not_camp, self.level_money_minus)
+            self.draw_num_images(screen)
 
 class Level_2(Level_1):
     def __init__(self) -> None:
