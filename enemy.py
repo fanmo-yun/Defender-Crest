@@ -30,6 +30,7 @@ class Slime(pygame.sprite.Sprite):
         self.hurt = RANK[self.rank_num - 1].get("hurt")
         self.health = RANK[self.rank_num - 1].get("health")
         self.reward = RANK[self.rank_num - 1].get("reward")
+        self.score = RANK[self.rank_num - 1].get("score")
         self.pos = Vector2(self.trailhead[0])
         self.targetmove = None
         self.movement = None
@@ -79,7 +80,7 @@ class Slime(pygame.sprite.Sprite):
     
     def is_dead(self, plus):
         if self.health <= 0:
-            plus(self.reward)
+            plus(self.reward, self.score)
             self.kill()
     
     def update(self, level_health, money_plus) -> None:

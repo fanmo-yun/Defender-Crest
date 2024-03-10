@@ -1,0 +1,33 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "end.tmx",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/FieldsTileset.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "end.tmx": {
+            "scale": 1.1807142857142856,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 560.6775559588627,
+                "y": 320.1451905626135
+            }
+        }
+    },
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
+    "map.width": 35,
+    "openFiles": [
+        "end.tmx"
+    ],
+    "project": "end.tiled-project",
+    "recentFiles": [
+        "end.tmx"
+    ]
+}

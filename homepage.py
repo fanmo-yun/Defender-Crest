@@ -3,7 +3,7 @@ import sys
 import pygame
 import setting
 from button import Button
-from levels import Level_1, Level_2
+from levels import Level_1, Level_2, Level_3, Level_end
 
 class HomePage:
     def __init__(self) -> None:
@@ -17,6 +17,8 @@ class HomePage:
             Button("#313336", "#D7FCD4", "exit", (105, 35), (((setting.SCREEN_WIDTH + setting.BANNER_SIZE - 105)) / 2, 355)))
         self.level1 = Level_1()
         self.level2 = Level_2()
+        self.level3 = Level_3()
+        self.end = Level_end()
     
     def mouse_click(self):
         mouse_pos = pygame.mouse.get_pos()
@@ -38,7 +40,11 @@ class HomePage:
             self.buttons.draw(screen)
             self.mouse_click()
         else:
-            if self.level1.is_pass_game == False:
-                self.level1.draw(screen)
-            elif self.level2.is_pass_game == False:
-                self.level2.draw(screen)
+            # if self.level1.is_pass_game == False:
+            #     self.level1.draw(screen)
+            # elif self.level2.is_pass_game == False:
+            #     self.level2.draw(screen)
+            # elif self.level3.is_pass_game == False:
+            #     self.level3.draw(screen)
+            # else:
+            self.end.draw(screen)

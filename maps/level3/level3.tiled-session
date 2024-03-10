@@ -1,0 +1,117 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "全部文件 (*)",
+    "fileStates": {
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/FieldsTileset.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/Tree1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/Tree2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/brush.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/camp.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/campfire.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/enemiesandplayers.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/fence.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/flag1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/pointer.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/shadow.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/shilaimu.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/stone.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/tower1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/tower2.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/tower3.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/tower4.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/tower5.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/tileset/tower6.tsx": {
+            "scaleInDock": 1
+        },
+        "level3 - 副本.tmx": {
+            "scale": 1.32703125,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 480.0188390439185,
+                "y": 320.26374661485926
+            }
+        },
+        "level3 copy.tmx": {
+            "scale": 1.32703125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 480.0188390439185,
+                "y": 320.26374661485926
+            }
+        },
+        "level3.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 470,
+                "y": 388
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/BensonFan/Documents/ProgramProject/DefenderCrest/maps/level3",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": null,
+    "openFiles": [
+    ],
+    "project": "level3.tiled-project",
+    "recentFiles": [
+        "level3.tmx",
+        "level3 copy.tmx",
+        "level3 - 副本.tmx"
+    ]
+}
