@@ -40,11 +40,11 @@ class HomePage:
             self.buttons.draw(screen)
             self.mouse_click()
         else:
-            # if self.level1.is_pass_game == False:
-            #     self.level1.draw(screen)
-            # elif self.level2.is_pass_game == False:
-            #     self.level2.draw(screen)
-            # elif self.level3.is_pass_game == False:
-            #     self.level3.draw(screen)
-            # else:
-            self.end.draw(screen, (self.level1.score, self.level2.score, self.level3.score))
+            if self.level1.is_pass_game == False:
+                self.level1.draw(screen)
+            elif self.level2.is_pass_game == False:
+                self.level2.draw(screen)
+            elif self.level3.is_pass_game == False:
+                self.level3.draw(screen)
+            else:
+                self.end.draw(screen, (self.level1.score, self.level2.score, self.level3.score))
