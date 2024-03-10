@@ -1,6 +1,6 @@
 RANK = [
     {
-        "health": 45,
+        "health": 85,
         "hurt": 1.5,
         "reward": 3,
         "speed": 1,
