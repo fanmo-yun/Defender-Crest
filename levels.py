@@ -316,6 +316,16 @@ class Level_3(Level_1):
 class Level_end:
     def __init__(self) -> None:
         self.background_image = pygame.image.load(os.path.join("maps", "end", "end.png")).convert_alpha()
+        self.font = pygame.font.Font(os.path.join("font", "JetBrainsMono-Bold.ttf"), 25)
+        self.font2 = pygame.font.Font(os.path.join("font", "JetBrainsMono-Bold.ttf"), 22)
+        self.thanksplay = self.font.render("Thanks for playing, you can close this window", True, setting.WHITE)
     
-    def draw(self, screen: pygame.Surface):
+    def draw_fonts(self, text: str) -> pygame.Surface:
+        return self.font2.render(text, True, setting.WHITE)
+    
+    def draw(self, screen: pygame.Surface, score):
         screen.blit(self.background_image, (0, 0))
+        screen.blit(self.thanksplay, (210, 220))
+        screen.blit(self.draw_fonts("LEVEL 1: " + str(score[0])), (480, 270))
+        screen.blit(self.draw_fonts("LEVEL 2: " + str(score[1])), (480, 300))
+        screen.blit(self.draw_fonts("LEVEL 3: " + str(score[2])), (480, 330))

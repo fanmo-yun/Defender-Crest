@@ -47,4 +47,4 @@ class HomePage:
             # elif self.level3.is_pass_game == False:
             #     self.level3.draw(screen)
             # else:
-            self.end.draw(screen)
+            self.end.draw(screen, (self.level1.score, self.level2.score, self.level3.score))

@@ -7,7 +7,6 @@ from button import Button
 class GameOver:
     def __init__(self) -> None:
         self.game_over_image = pygame.image.load(os.path.join("maps", "gameover", "gameover.png")).convert_alpha()
-        self.buttons = pygame.sprite.Group()
         self.font = pygame.font.Font(os.path.join("font", "JetBrainsMono-Bold.ttf"), 20)
         self.text = self.font.render("You can close this window and restart the game!", True, setting.WHITE)
 
