@@ -258,7 +258,7 @@ class Level_2(Level_1):
         
         self.json_data = json.loads(data)
         self.tile_data = self.json_data["layers"][0]["data"]
-        self.trailhead = [(-80, 80), (790, 80), (790, 270), (90, 270), (410, 500), (90, 460), (855, 460), (855, 610)]
+        self.trailhead = [(-80, 80), (790, 80), (790, 270), (90, 270), (90, 460), (855, 460), (855, 610)]
     
     def check_tile(self, mouse_set_tile_num: int) -> bool:
         if self.tile_data[mouse_set_tile_num] == 84:
