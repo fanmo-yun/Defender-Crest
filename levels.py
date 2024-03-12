@@ -268,7 +268,7 @@ class Level_2(Level_1):
     def load_level_data(self):
         self.money = 120
         self.turret_num = 15
-        self.level_health = 200
+        self.level_health = 120
     
     def generate_enemies_num(self):
         self.enemy_rank_num = random.randint(1, 2)
@@ -302,7 +302,7 @@ class Level_3(Level_1):
     def load_level_data(self):
         self.money = 180
         self.turret_num = 15
-        self.level_health = 300
+        self.level_health = 180
     
     def generate_enemies_num(self):
         self.enemy_rank_num = random.randint(1, 3)

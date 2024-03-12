@@ -54,23 +54,27 @@ class Slime(pygame.sprite.Sprite):
             self.walk_sprite_sheet_images.append(self.sprite_sheets[0].subsurface(i * setting.ENEMY_SIZE, 0, setting.ENEMY_SIZE, setting.ENEMY_SIZE))
             
     def move(self, level_health):
-        if (self.pos.x, self.pos.y) == self.trailhead[len(self.trailhead) - 1]:
+        # if (self.pos.x, self.pos.y) >= self.trailhead[len(self.trailhead) - 1]:
+        #     self.health = 0
+        #     level_health(self.hurt)
+        #     self.kill()
+        # else:
+        if self.targetmove_waypoint < len(self.trailhead):
+            self.targetmove = Vector2(self.trailhead[self.targetmove_waypoint])
+            self.movement = self.targetmove - self.pos
+        else:
             self.health = 0
             level_health(self.hurt)
             self.kill()
+
+        distance = self.movement.length()
+        if distance >= self.speed:
+            self.pos += self.movement.normalize() * self.speed
         else:
-            if self.targetmove_waypoint < len(self.trailhead):
-                self.targetmove = Vector2(self.trailhead[self.targetmove_waypoint])
-                self.movement = self.targetmove - self.pos
-            
-            distance = self.movement.length()
-            if distance >= self.speed:
-                self.pos += self.movement.normalize() * self.speed
-            else:
-                if distance != 0:
-                    self.pos -= self.movement.normalize() * distance
-                self.targetmove_waypoint += 1
-            self.rect.topleft = (self.pos.x, self.pos.y)
+            if distance != 0:
+                self.pos -= self.movement.normalize() * distance
+            self.targetmove_waypoint += 1
+        self.rect.topleft = (self.pos.x, self.pos.y)
     
     def play_animation(self):
         self.animation_index += self.animation_speed
