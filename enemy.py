@@ -54,11 +54,6 @@ class Slime(pygame.sprite.Sprite):
             self.walk_sprite_sheet_images.append(self.sprite_sheets[0].subsurface(i * setting.ENEMY_SIZE, 0, setting.ENEMY_SIZE, setting.ENEMY_SIZE))
             
     def move(self, level_health):
-        # if (self.pos.x, self.pos.y) >= self.trailhead[len(self.trailhead) - 1]:
-        #     self.health = 0
-        #     level_health(self.hurt)
-        #     self.kill()
-        # else:
         if self.targetmove_waypoint < len(self.trailhead):
             self.targetmove = Vector2(self.trailhead[self.targetmove_waypoint])
             self.movement = self.targetmove - self.pos
