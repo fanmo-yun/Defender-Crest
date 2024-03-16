@@ -1,8 +1,6 @@
 import os
-import sys
 import pygame
 import setting
-from button import Button
 
 class GameOver:
     def __init__(self) -> None:
